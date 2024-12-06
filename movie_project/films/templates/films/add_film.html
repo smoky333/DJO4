@@ -1,0 +1,14 @@
+{% extends 'films/base.html' %}
+
+{% block title %}Добавить фильм{% endblock %}
+
+{% block content %}
+<h1 class="mt-4">Добавить фильм</h1>
+<form method="POST" class="mt-3">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>
+<a href="{% url 'film_list' %}" class="btn btn-secondary mt-3">Назад</a>
+{% endblock %}
+>

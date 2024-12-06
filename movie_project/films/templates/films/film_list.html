@@ -1,0 +1,33 @@
+{% extends 'films/base.html' %}
+
+{% block title %}Список фильмов{% endblock %}
+
+{% block content %}
+<h1 class="mt-4">Список фильмов</h1>
+<a href="{% url 'add_film' %}" class="btn btn-primary mb-3">Добавить фильм</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Отзыв</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for film in films %}
+        <tr>
+            <td>{{ film.title }}</td>
+            <td>{{ film.description }}</td>
+            <td>{{ film.review }}</td>
+            <td>
+                <form action="{% url 'delete_film' film.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
